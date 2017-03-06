@@ -1,0 +1,64 @@
+{{ set(this, 'title', 'Search - ' ~ search) }}
+
+{{this.registerJs("SearchController.listing();")}}
+
+{% set limit = 20 %}
+{% set articles = _Search.searchArticles({'limit': limit, 'offset': 0, 'search': search}) %}
+
+<div class="page_section">
+    <div class="container">
+        {% if articles|length > 0 %}
+            <div class="row">
+                <div class="col-two-thirds">
+                    {% if articles|length > 0 %}
+                        {{this.render('partials/_single-article.twig', {article: articles[0], 'position': 1 }) | raw}}
+                    {% endif %}
+                </div>
+                <div class="col-third">
+                    {% if articles[1] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: articles[1], 'position': 2}) | raw}}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-two-thirds">
+                    {% if articles[2] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: articles[2], 'position': 3}) | raw}}
+                    {% endif %}
+                </div>
+                <div class="col-third">
+                    {% if articles[3] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: articles[3], 'position': 4}) | raw}}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                {% for i in 4..18 %}
+                    <div class="col-third">
+                        {% if articles[i] %}
+                            {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1)}) | raw}}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row ajaxArticles" data-offset="{{limit}}"></div>
+            <div class="row text-center has-margin-bottom-20">
+                {% if articles|length >= limit %}
+                    <a href="javascript:void(0)" class="button loadMoreArticles"><i class="fa fa-arrow-down"></i>Load More</a>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="login-page">
+                <div class="container">
+                    <div class="tab-content">
+                        <div class="row">
+                            <div id="login-social" class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                <p class="helper-text"> No search result found.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>

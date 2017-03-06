@@ -1,0 +1,28 @@
+<div class="responsive-navigation" role="navigation">
+    <div class="close-menu" style="display: block;"><span class="icon_close"></span></div>
+    <ul class="responsive-navigation__list">
+        <!--
+           <li class="responsive-navigation__item"><a href="{{network.defaultBlogUrl}}" class="responsive-navigation__link">Home</a></li>
+        -->
+        {% set menuItems = blogData.blogHeaderMenu %}
+        {% for parentItem in menuItems %}
+            {% set activeClass = (parentItem.link == _AppHelper.getServerUrl()) ? 'active' : ''%}
+            {% set externalClass = (parentItem.isExternal) ? 'external-link' : '' %}           
+            <li class="responsive-navigation__item">
+                <a href="{{parentItem.link |raw}}" class="responsive-navigation__link {{activeClass}} {{externalClass}}" {% if parentItem.target != "" %}target="{{parentItem.target}}"{% endif %}>
+                    {{ ((parentItem.label is empty) ? ((parentItem.pageTitle is empty)? parentItem.blogTitle : parentItem.pageTitle) : parentItem.label )}}
+                </a>
+                {% if parentItem.children is defined and parentItem.children | length > 0 %}
+                    <ul class="sub-menu">
+                        {% for childItem in parentItem.children%}
+                            {% set externalClass = (childItem.isExternal) ? 'external-link' : '' %}
+                            <li><a class="{{externalClass}}" href="{{childItem.link |raw}}" {% if childItem.target != "" %}target="{{childItem.target}}"{% endif %}>
+                                    {{ ((childItem.label is empty) ? ((childItem.pageTitle is empty)? childItem.blogTitle : childItem.pageTitle) : childItem.label)}}
+                                </a></li>
+                            {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>

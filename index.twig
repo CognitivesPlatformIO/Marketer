@@ -1,0 +1,135 @@
+{{ set(this, 'title', _Blog.getBlogTitle()) }}
+
+{{this.registerJs("HomeController.listing();")}}
+{% set limit = 20 %}
+{% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
+{% set articles = articlesArr.articles %}
+<div class="page_section">
+    {% if articles[0] is defined %}
+        {{this.render('partials/_single-article.twig', {article: articles[0], 'position': 1, cardClass: 'card__banner full-screen', viewType: 'banner'}) | raw}}
+    {% endif %}
+
+    <div class="container">
+        {% if articles|length > 0 %}
+            <div class="row">
+                <div class="col-two-thirds">
+                    {% if articles[1] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[1], 'position': 2, viewType: '2col'}) | raw}}
+                    {% endif %}
+                </div>
+                <div class="col-third-short">
+                    {% for i in 2..3 %}
+                        {% if articles[i] %}
+                            {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), viewType: 'small'}) | raw}}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        {% if articles[4] is defined %}
+            <div class="row">
+                <div class="col-two-thirds">
+                    {% if articles[4] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: articles[4], 'position': 5, viewType: '2col'}) | raw}}
+                    {% endif %}
+                </div>
+                <div class="col-third">
+                    {% if articles[5] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: articles[5], 'position': 6, viewType: '1col',}) | raw}}
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    
+    {{this.render('partials/_cta.twig',{keyword: 'cta_1'}) | raw}}
+
+    <div class="container">
+        {% if articles[6] is defined %}
+            <div class="row">
+                <div class="col-two-thirds">
+                    {% if articles[6] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: articles[6], 'position': 7, viewType: '2col'}) | raw}}
+                    {% endif %}
+                </div>
+                <div class="col-third">
+                    {% if articles[7] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: articles[7], 'position': 8, viewType: '1col'}) | raw}}
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    {% if articles[8] is defined %}
+    <div class="container">
+        {% if articles[8] is defined %}
+            <div class="row">
+                <div class="col-two-thirds">
+                    {% if articles[8] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: articles[8], 'position': 9, viewType: '2col'}) | raw}}
+                    {% endif %}
+                </div>
+                <div class="col-third">
+                    {% if articles[9] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: articles[9], 'position': 10, viewType: '1col'}) | raw}}
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+
+        {% if articles[10] is defined %}
+            <div class="row">
+                <div class="col-full"> 
+                    {% if articles[10] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: articles[10], 'position': 11, cardClass: 'card__banner', viewType: 'banner'}) | raw}}
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        
+        {% if articles[11] is defined %}
+            <div class="row">
+                {% for i in 11..13 %}
+                    {% if articles[i] is defined %}
+                        <div class="col-third">
+                            {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), viewType: '2col'}) | raw}}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    {% endif %}
+    
+    {{this.render('partials/_cta.twig',{keyword: 'cta_2'}) | raw}}
+    
+    <div class="container">
+        {% if articles[14] is defined %}
+            <div class="row">
+                {% for i in 14..19 %}
+                    {% if articles[i] is defined %}
+                        <div class="col-third">
+                            {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), viewType: '2col'}) | raw}}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="row ajaxArticles" data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}" data-offset="{{limit}}"></div>
+        <div class=" text-center has-margin-bottom-40">
+            {% if articles|length >= limit %}
+                <a href="javascript:void(0)" class="button loadMoreArticles"><i class="fa fa-arrow-down" aria-hidden="true"></i> Load More</a>
+            {% endif %}
+        </div>         
+    </div>
+            
+    {% set noDataCls = 'hide' %}
+    {% if articles|length == 0 %}
+        {% set noDataCls = '' %}
+     {% endif %}
+    <div class="row text-center has-margin-bottom-20 has-margin-top-20 {{noDataCls}} NoArticlesMsg">
+        <p class="no-data text-center">No articles found.</p>  
+    </div>
+</div>  

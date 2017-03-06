@@ -1,0 +1,171 @@
+{% set blogInfo = _Blog.getBlog() %}
+
+{% set networkData = _Network.getNetworkData() %}
+
+{{ set(this, 'title', blogInfo.title) }}
+
+{% set limit = 19 %}
+{% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
+{% set articles = articlesArr.articles %}
+
+{% set profileImg = networkData.templatePath ~ '/images/feature.png' %}
+{% if blogInfo.owner['media'] is defined and blogInfo.owner['media'] | length > 0 %}
+    {% set profileImg = _Media.getMediaUrl(blogInfo.owner['media'], 100, 100, {radius:'max', crop: 'thumb', gravity: 'face'}) %}
+{% endif %}
+
+{% set hasBlogImage = FALSE %}
+{% set blogImage = "" %}
+{% if blogInfo.media['cover']['path'] is not empty %}
+    {% set blogImage = blogInfo.media['cover']['path'] %}
+    {% set hasBlogImage = TRUE %}
+{% endif %}    
+{% set blogDetails = _Blog.getBlogDetails() %}
+
+{{this.registerJs("HomeController.listing();")}}
+{{this.registerJs("HomeController.blog();")}}
+<div class="blog" {%if hasBlogImage%}style="background-image:url({{blogImage}});"{%endif%}>
+    <div class="blog__content">
+        <div class="blog-left">
+            <h1 class="blog__heading">{{blogInfo.title}}</h1>
+            <p class="blog__text">{{Helper.shortStr(blogInfo.shortDescription, 80, false, true) | raw}}</p>
+            {% if not _User.isGuest %}
+                {% set isUserFollowingBlog = _User.isUserFollowing('blog', blogInfo.id) %}
+                {% if isUserFollowingBlog %}
+                    <a href="javascript:void(0)" class="button followBlog" data-status="unfollow" data-guid="{{blogInfo.guid}}">FOLLOWING -</a>
+                {% else %}
+                    <a href="javascript:void(0)" class="button followBlog" data-status="follow"  data-guid="{{blogInfo.guid}}">FOLLOW +</a>
+                {% endif %}
+            {% else %}
+                <a href="javascript:void(0)" class="button forceLoginModal">FOLLOW +</a>
+            {% endif %}
+            <div class="blog__social">
+                {% if blogInfo.settings['social']['facebook'] is not empty %}
+                    <a href="{{blogInfo.settings['social']['facebook']}}" target="_blank" class="blog__social-link blog__social-link--facebook">Facebook</a>
+                {% endif %}
+                {% if blogInfo.settings['social']['twitter'] is not empty %}
+                    <a href="{{blogInfo.settings['social']['twitter']}}" target="_blank" class="blog__social-link blog__social-link--twitter">Twitter</a>
+                {% endif %}
+                {% if blogInfo.settings['social']['google'] is not empty %}
+                    <a href="{{blogInfo.settings['social']['google']}}" target="_blank" class="blog__social-link blog__social-link--google-plus">Google+</a>
+                {% endif %}
+                {% if blogInfo.settings['social']['linkedin'] is not empty %}
+                    <a href="{{blogInfo.settings['social']['linkedin']}}" target="_blank" class="blog__social-link blog__social-link--linkedin">Linkedin</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="blog-right">
+            <div class="author">
+                {% set blogOwnerImage = '' %}
+                {% if blogInfo.owner['media'] | length > 0 and blogInfo.owner['media']['id'] is defined %}
+                    {% set blogOwnerImage = _Media.getMediaUrl(blogInfo.owner['media'], 160, 160, {crop:"thumb", radius:"max", gravity:"face"}) %}
+                {% endif %}
+               
+                <div class="author__avatar" {%if blogOwnerImage is not empty%}style="background-image:url('{{blogOwnerImage}}');"{%endif%}></div>
+                <h1 class="author__name">{{blogInfo.owner['display_name']}}</h1>
+                <p class="author__title">{{Helper.shortStr(blogInfo.owner['bio'], 180, false, true) | raw}}</p>
+                {% if not _User.isGuest() %}
+                    {% if _User.getId() != blogInfo.owner['id'] %}
+                        {% set isUserFollowingUser = _User.isUserFollowing('user', blogInfo.owner['id']) %}
+                        {% if isUserFollowingUser %}
+                            <div href="javascript:void(0)" class="button followUser" data-status="unfollow" data-guid="{{blogInfo.owner['guid']}}">Following -</div>
+                        {% else %}
+                            <div href="javascript:void(0)" class="button followUser" data-status="follow" data-guid="{{blogInfo.owner['guid']}}">Follow +</div>
+                        {% endif %}
+                    {% endif %} 
+                {% else %}
+                    <div class="button forceLoginModal">Follow +</div>
+                {% endif %}
+                
+
+                <div class="author__links">
+                    <a href="/profile/{{blogInfo.owner['username']}}" class="author__link author__link--followers">
+                        <strong>{{ (blogInfo.total['followers'] > 0) ? blogInfo.total['followers'] : 0 }}</strong>
+                        Followers
+                    </a>
+                    <a href="/profile/{{blogInfo.owner['username']}}" class="author__link author__link--following">
+                        <strong>{{ (blogInfo.total['following'] > 0) ? blogInfo.total['following'] : 0 }}</strong>
+                        Following
+                    </a>
+                    <a href="/profile/{{blogInfo.owner['username']}}" class="author__link author__link--articles">
+                        <strong>{{ (blogInfo.total['article'] > 0) ? blogInfo.total['article'] : 0 }}</strong>
+                        Articles
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- blog Data -->
+<div class="container">
+    {% if articles|length > 0 %}
+    <div class="row">
+        <div class="col-two-thirds">
+                {{this.render('partials/_single-article.twig', {article: articles[0], 'position': 1, viewType: '2col' }) | raw}}
+        </div>
+        <div class="col-third">
+            {% if articles[1] is defined %}
+                {{this.render('partials/_single-article.twig', {article: articles[1], 'position': 2}) | raw}}
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}        
+    {% if articles[2] is defined %}
+    <div class="row">
+        <div class="col-two-thirds">
+                {{this.render('partials/_single-article.twig', {article: articles[2], 'position': 3, viewType: '2col'}) | raw}}
+        </div>
+        <div class="col-third">
+            {% if articles[3] is defined %}
+                {{this.render('partials/_single-article.twig', {article: articles[3], 'position': 4}) | raw}}
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{{this.render('partials/_cta.twig',{keyword: 'cta_1'}) | raw}}
+    
+<div class="container">    
+    {% if articles[4] is defined %}
+    <div class="row">
+        {% for i in 4..12 %}
+            <div class="col-third">
+            {% if articles[i] %}
+                {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1)}) | raw}}
+            {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+{{this.render('partials/_cta.twig',{keyword: 'cta_2'}) | raw}}
+    
+<div class="container">    
+    {% if articles[13] is defined %}
+    <div class="row">
+        {% for i in 13..18 %}
+            <div class="col-third">
+            {% if articles[i] %}
+                {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1)}) | raw}}
+            {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <div class="row ajaxArticles" data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}" data-offset="{{limit}}"></div>
+    <div class="row text-center has-margin-bottom-20">
+        {% if articles|length >= limit %}
+        <a href="javascript:void(0)" class="button loadMoreArticles"><i class="fa fa-arrow-down"></i>Load More</a>
+        {% endif %}
+    </div>
+    
+    {% set noDataCls = 'hide' %}
+    {% if articles|length == 0 %}
+        {% set noDataCls = '' %}
+     {% endif %}
+    <div class="row text-center has-margin-bottom-20 has-margin-top-20 {{noDataCls}} NoArticlesMsg">
+        <p class="no-data text-center">No articles found.</p>  
+    </div>
+</div>

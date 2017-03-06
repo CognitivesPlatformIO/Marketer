@@ -1,0 +1,37 @@
+{% if keyword is defined and keyword is not empty %}
+    {% set cta = _CallToAction.getKeywordBasedCTA(keyword)%}
+    {% if cta is defined and cta is not empty %}
+        {% set ctaBackgroundImage = ''%}
+        {% if(cta.media['id'] is defined and cta.media['id'] is not empty) %}
+            {% set ctaBackgroundImage = _Media.getMediaUrl(cta.media,0,0,{'crop': 'fill'}) %}
+        {% endif %}
+        {{this.registerCss("
+            .cta_block_"~cta.id~" .button.blue {
+                border-color: "~cta.button['backgroundColor']~";
+                background: "~cta.button['backgroundColor']~"
+            }
+            .cta_block_"~cta.id~" .button.blue:hover {
+                color: "~cta.button['backgroundColor']~";
+                border-color: "~cta.button['backgroundColor']~";
+                background: none repeat scroll 0 0
+            } 
+        ")}}
+        <div class="clearfix"></div>
+        <div class="call-to-action-wrapper image-covered cta_block_{{cta.id}}"{% if ctaBackgroundImage is not empty or cta.backgroundColor is not empty %} style="{{ (ctaBackgroundImage is not empty) ? 'background-image: url('~ctaBackgroundImage~');' : ''}}{{ (cta.backgroundColor is not empty) ? 'background-color: '~cta.backgroundColor~';' : ''}}"{% endif %}>
+            <div class="overlay_layer"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 col-sm-8 col-xs-12 col-centered text-center">
+                        <div class="content-area">
+                            <h3 class="upper">{{cta.title |raw}}</h3>
+                            <p>{{cta.description |raw}}</p>
+                            <div class="form-group button-set">
+                                <a target="_blank" href="{{cta.button['url']}}"  class="button blue upper" name="contact-button">{{cta.button['text'] |raw}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}

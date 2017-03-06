@@ -1,0 +1,60 @@
+{{ set(this, 'title', 'Contact Us') }}  
+
+<div class="page_section">
+    <section class="container">
+        <!-- Begin ContactUs -->
+        <div class="content-wrap contact_us_page">
+            <div class="row">
+                <div class="col-two-thirds">
+                    <h3 class="sub-heading">Leave us a message</h3>
+                    <p class="has-border-bottom">Please fill out the form below to contact us.</p>
+                    {{this.render('layouts/partials/messages.twig') | raw }}
+                    <form id="contactForm" class="form-horizontal form-contact" action="{{_AppHelper.getContactFormUrl()}}" method="post" autoComplete="off">
+                        <input type="hidden" name="_csrf" value="{{_AppHelper.getCsrfToken()}}" />
+                        <div class="controls-full">
+                            <label class="control-label" for="contactform-name">Name</label>
+                            <input type="text" id="contactform-name" class="form-control" name="name" placeholder="Name">
+                        </div>
+                        <div class="controls-full">
+                            <label class="control-label" for="contactform-email">Email</label>
+                            <input type="email" id="contactform-email" class="form-control" name="email" placeholder="Email">
+                        </div>
+                        <div class="controls-full">
+                            <label class="control-label" for="contactform-message">Message</label>
+                            <textarea class="form-control" name="message" placeholder="Message"></textarea>
+                        </div>
+                        <div class="pull-right">
+                            <button type="submit" id="btnContact" class="button green lg has-margin-top-20" name="contact-button">Send</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-third">
+                    <div class="contact_details">
+                        <h3 class="sub-heading">Contact us</h3>
+                        <p class="has-border-bottom">You can contact us direct by:</p>
+
+                        {% set businessDetails = _Blog.getHomeBlogSettings() %}
+                        <ul class="address">
+                            <li><span>Email</span> <a class="green" href="mailto:{{businessDetails.contact['email']}}">{{businessDetails.contact['email']}}</a></li>
+                            <li><span>Postal</span> {{businessDetails.contact['address']}}<br />
+                                {{businessDetails.contact['city']}}, {{businessDetails.contact['state']}}
+                                <br />
+                                {{businessDetails.contact['country']}} {{businessDetails.contact['postcode']}}</li>
+                        </ul>
+                        <ul class="social">
+                            {% if businessDetails.social['facebook'] is not empty %}
+                                <li class="facebook"><a href="{{businessDetails.social['facebook']}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            {% endif %}
+                            {% if businessDetails.social['twitter'] is not empty %}
+                                <li class="twitter"><a href="{{businessDetails.social['twitter']}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            {% endif %}
+                            {% if businessDetails.social['google'] is not empty %}
+                                <li class="g-plus"><a href="{{businessDetails.social['google']}}" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,110 @@
+{{ set(this, 'title', _Blog.getBlogTitle()) }}
+
+{{this.registerJs("HomeController.listing();")}}
+
+{% set limit= 21 %}
+{% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
+{% set articles = articlesArr.articles %}
+
+<div class="page_section">
+    {% if articles[0] is defined %}
+        {{this.render('partials/_single-article.twig', {article: articles[0], 'position': 1, cardClass: 'card__banner full-screen', viewType: 'banner'}) | raw}}
+    {% endif %}
+    <div class="container">
+        {% if articles|length > 0 %}
+            <div class="row">
+                <!-- 2nd Row -->
+                {% for i in 1..3 %}
+                    {% if articles[i] is defined %}
+                        <div class="col-third">
+                            {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1)}) | raw}}
+                        </div>    
+                    {% endif %}
+                {% endfor %}
+                 
+                <!-- 3rd Row -->
+                {% if articles[4] is defined %}
+                    <div class="col-two-thirds">
+                        {{this.render('partials/_single-article.twig', {article: articles[4], 'position': 5, 'viewType': '2col'}) | raw}}
+                    </div>
+                {% endif %}
+            
+                {% if articles[5] is defined %}
+                    <div class="col-third-short">
+                        {{this.render('partials/_single-article.twig', {article: articles[5], 'position': 6, 'viewType' : 'small'}) | raw}}
+                    </div>
+                {% endif %}
+                {% if articles[6] is defined %}
+                    <div class="col-third-short">
+                        {{this.render('partials/_single-article.twig', {article: articles[6], 'position': 7, 'viewType' : 'small'}) | raw}}
+                    </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>                
+        
+        {{this.render('partials/_cta.twig',{keyword: 'cta_1'}) | raw}}
+        
+        {% if articles|length > 7 %}
+            <div class="container">
+                <div class="row">
+                <!-- 4th Row -->
+                {% if articles[7] is defined %}
+                    <div class="col-two-thirds">
+                        {{this.render('partials/_single-article.twig', {article: articles[7], 'position': 8, 'viewType': '2col'}) | raw}}
+                    </div>
+                {% endif %}
+                {% if articles[8] is defined %}
+                    <div class="col-third">
+                        {{this.render('partials/_single-article.twig', {article: articles[8], 'position': 9}) | raw}}
+                    </div>
+                {% endif %}
+                
+                <!-- 5th Row -->
+                {% for i in 9..14 %}
+                    {% if articles[i] is defined %}
+                        <div class="col-third">
+                            {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1)}) | raw}}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        
+        {{this.render('partials/_cta.twig',{keyword: 'cta_2'}) | raw}}
+        
+        {% if articles|length > 0 %}
+            <div class="container">
+                <div class="row">
+                {% for i in 15..20 %}
+                    {% if articles[i] is defined %}
+                        <div class="col-third">
+                            {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1)}) | raw}}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    <div class="container">
+        <div class="row ajaxArticles" data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}" data-offset="{{limit}}"></div>
+        <div class="row text-center has-margin-bottom-20">
+            {% if articles|length >= limit %}
+                <a href="javascript:void(0)" class="button loadMoreArticles"><i class="fa fa-arrow-down"></i>Load More</a>
+            {% endif %}
+            
+        </div>
+    </div>
+            
+    {% set noDataCls = 'hide' %}
+    {% if articles|length == 0 %}
+        {% set noDataCls = '' %}
+     {% endif %}
+    <div class="row text-center has-margin-bottom-20 has-margin-top-20 {{noDataCls}} NoArticlesMsg">
+        <p class="no-data text-center">No articles found.</p>  
+    </div>
+</div>
+                
+        
+

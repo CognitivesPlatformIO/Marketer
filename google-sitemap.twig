@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    {% for postModel in postModels %}
+        {% set url = _Article.getArticleUrl({'guid':postModel.guid})%}
+        <url>
+            <loc>{{url}}</loc>
+            <news:news>
+                <news:publication>
+                    <news:name>{{_AppHelper.getNetworkName()}}</news:name>
+                    <news:language>en</news:language>
+                </news:publication>
+                <news:publication_date>{{_AppHelper.getFormattedDate(postModel.updated_at)}}</news:publication_date>
+                <news:title>{{postModel.title}}</news:title>
+            </news:news>
+        </url>
+    {% endfor %}
+</urlset>

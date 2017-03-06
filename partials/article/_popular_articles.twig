@@ -1,0 +1,16 @@
+{% set popularArticles = _Article.getPopularArticles({ limit: 3, excludeArticleIds : articleId }) %}
+{% if popularArticles|length > 0 %}
+<div class="footer">
+    <div class="container">
+        <h1 class="footer__heading">You might like...</h1>
+        <div class="row">
+            {% for article in popularArticles %}
+                <div class="col-third">
+                    {{this.render('../_single-article.twig', {article: article, 'position': 0, viewType: '1col',}) | raw}}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
