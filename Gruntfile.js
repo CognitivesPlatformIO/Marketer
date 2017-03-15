@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         cachebreaker: {
             theme: {
                 options: {
-                    match: ['theme.min.js', 'theme.gz.js', 'output.min.css', 'output.gz.css']
+                    match: ['theme.min.js', 'output.min.css']
                 },
                 files: {
                     src: [
@@ -101,8 +101,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-cache-breaker');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-compress');
+    //grunt.loadNpmTasks('grunt-contrib-compress');
     
     // Default task(s).
-    grunt.registerTask('default', ['uglify', 'cssmin', 'cachebreaker', 'compress']);
+    grunt.registerTask('default', ['uglify', 'cssmin', 'cachebreaker']);
 };
