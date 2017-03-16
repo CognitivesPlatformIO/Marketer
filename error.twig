@@ -1,5 +1,18 @@
-{{ set(this, 'title', name) }}         
-                        
-<div class="landing-page-content landing-page-content_reduce-padding">
-	<p>{{_AppHelper.translator('app', message)}}</p>
+{{ set(this, 'title', name) }}
+{% set networkData = _Network.getNetworkData() %}
+<div class="page_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-sm-10 col-xs-12 col-centered">
+                <div class="error-wrapper text-center">
+                    <img src="{{networkData.templatePath}}/static/images/icons/error.svg" class="error-icon" alt="Error" />
+                    <div class="error-message">
+                        <p class="content-section">{{_AppHelper.translator('app', message)}}</p>
+                        <a href="/" class="button red home-button"><i class="fa fa-long-arrow-left"></i>Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+    
