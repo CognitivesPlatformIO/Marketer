@@ -35,7 +35,7 @@
                     <a href="{{blogInfo.social['pinterest']}}" class="fa_pinterest" target="_blank"><i class="fa fa-pinterest"></i></a>
                 {% endif %}
             </div>
-            <div class="footer__copyright">Copyright {{'now'|date('Y')}}. Powered By {{network.poweredBy}}</div>
+            <div class="footer__copyright">Copyright {{'now'|date('Y')}}. Powered By {{networkData.poweredBy}}</div>
         </div>
         {% set menuItems = blogData.blogFooterMenu %}
         {% set halfCounter = (menuItems | length / 2) | round(0, 'ceil') - 1 %}  
