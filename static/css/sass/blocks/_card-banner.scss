@@ -1,0 +1,93 @@
+.card__banner {
+    @extend .card--light2;
+    background-position:50%;
+    background-repeat:no-repeat;
+    background-size:cover;
+    display:table;
+    height:600px;
+    margin-bottom:40px;
+    padding:0px;
+    width:100%;
+
+    @media #{$media-phone}, #{$media-iPhoneMedium} {
+        height:auto;
+    }
+
+    .card {
+        &__content {
+            display:table-cell;
+            position:relative;
+            text-align:center;
+            vertical-align:middle;
+            z-index:100;
+            @include padding(0 22% 40px);
+            @include phone {
+                @include padding(0 20px 40px);
+            }
+        }
+        &__category{
+            color: $white !important;
+            &:after {
+                margin:5px auto 30px auto;
+                background-color: $white !important;
+            }
+        }
+        &__author {
+            color: $white !important;
+        }
+        &__icon {
+            &-social {
+                display:none;
+            }
+            &-youtube {
+                margin:40px auto;
+            }
+        }
+        &__heading {
+            @include card_heading1;
+            margin-bottom:30px;
+            width:100%;
+
+            @include phone {
+                @include card_heading3;
+            }
+        }
+        &__text {
+            @include card_text_large;
+            color:$light-color;
+            font-weight:100;
+            margin-bottom:20px;
+        }
+        &__caption {
+            margin-bottom:40px;
+        }
+        &__avatar {
+            margin:0px auto 14px;
+            float:none;
+            text-align:center;
+        }
+    }
+
+    &:after {
+        @include card_darken2;
+        bottom:6px;
+        height:calc(100% - 6px);
+        @include opacity(0.30);
+    }
+
+    &.without__image {
+        &:after {
+            @include card_darken2;
+            top:6px;
+            height:calc(100% - 6px);
+        }
+    }
+
+    @include phone {
+        height:auto;
+    }
+}
+
+.card--category.card_ads .card__image {
+    border-color:$warning!important;
+}

@@ -1,0 +1,71 @@
+/* Begin Call to action wrapper 
+   ============================
+*/
+
+.call-to-action-wrapper {
+	@include padding(50px 0);
+	color: $white;
+	background-color: $highlight-color;
+	position: relative;
+	margin-bottom:30px;
+	
+	.content-area {
+		@include padding(0 40px);
+		position: relative;
+		z-index: 11;
+		@media #{$media-iPhoneMedium}, #{$media-phone} {
+			@include padding(0 20px);
+		}
+		h3 {
+			font-size: ($baseFontSize * 3) + 0;
+			font-weight: 700;
+			line-height: 1.3;
+			margin-bottom:10px;
+			@media #{$media-iPhoneLarge} {
+				font-size: ($baseFontSize * 3) - 6;
+			}
+			@media #{$media-iPhoneMedium}, #{$media-phone} {
+				font-size: ($baseFontSize * 2) + 0;
+			}
+		}
+		p {
+			font-size: ($baseFontSize * 1) + 4;
+			line-height: 1.3;
+			margin-bottom:20px;
+		}
+		.form-horizontal {			
+			.form-group {
+				+ .form-group {
+					margin-top: 20px;
+				}
+				&.button-set {
+					.button + .button {
+						margin-left: 20px;
+					} 
+				}
+			}
+		}
+		.button {
+			&.lg {
+				@include padding(7px 50px);
+				@media #{$media-iPhoneMedium}, #{$media-phone} {
+					@include padding(7px 20px);
+				}
+			}
+		}
+	}
+	.overlay_layer {
+		background-color: rgba($transparent, 0.5);
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 10;
+		height: 100%;
+		width: 100%;
+	}
+}
+
+
+/* End Call to action wrapper 
+   ============================
+*/

@@ -1,0 +1,192 @@
+.footer {
+    background-color: $dark-color;
+    padding-top: 70px;
+    padding-bottom: 100px;
+
+    &__container {
+        @extend .container;
+
+        @include tablet {
+            padding-left: 30px;
+            padding-right: 40px;
+        }
+    }
+    &__info {
+        @include make-sm-column(6);
+        @include make-md-column(4);
+
+        @media #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} {
+            @include padding(0 0 20px 0);
+        }
+        .social {
+            display: block;
+            margin-bottom: 10px;
+            .fa_twitter, .fa_facebook, .fa_gplus, .fa_instagram, .fa_youtube, .fa_linkedin, .fa_pinterest, .fa_vimeo {
+                color: $white;
+                font-size: 20px;
+                margin-right:16px;
+                margin-bottom:20px;
+                display: inline-block;
+                &:hover {
+                    cursor: pointer;
+                    @include transition(all 0.5s ease 0s);
+                }
+            }
+            .fa_twitter {
+                &:hover {
+                    color: color(twitter) !important;
+                }
+            }
+            .fa_facebook {
+                &:hover {
+                    color: color(facebook) !important;
+                }
+            }
+            .fa_gplus {
+                &:hover {
+                    color: color(google-plus) !important;
+                }
+            }
+            .fa_instagram {
+                &:hover {
+                    color: color(instagram) !important;
+                }
+            }
+            .fa_youtube {
+                &:hover {
+                    color: color(youtube) !important;
+                }
+            }
+            .fa_linkedin {
+                &:hover {
+                    color: color(linkedin) !important;
+                }
+            }
+            .fa_pinterest {
+                &:hover {
+                    color: color(pinterest) !important;
+                }
+            }
+            .fa_vimeo {
+                &:hover {
+                    color: color(vimeo) !important;
+                }
+            }
+        }
+
+    }
+    &__logo {
+        background-position: 0% 50%;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        /*border: 1px $light-color solid;
+        padding: 0px 20px; */
+        display: inline-block;
+        font-size: 14px;
+        height: 60px;
+        max-width: 250px;
+        line-height: 33px;
+        margin-bottom: 30px;
+        text-align: center;
+        text-transform: uppercase;
+        vertical-align: middle;
+
+        img {
+            max-height: 100%;
+        }
+        &, &:link, &:visited, &:active {
+            color: $light-color;
+        }
+    }
+    &__copyright {
+        color: #fff;
+        font-size: 12px;
+    }
+    &__navigation {
+        @include make-sm-column(6);
+        @include make-md-column(8);
+
+        text-transform: uppercase;
+
+        &-item {
+        }
+        &-link {
+            &, &:link, &:visited, &:active {
+                color: #fff;
+                display: block;
+                font-size: 13px;
+                line-height: 1.5;
+                margin-bottom: 15px;
+            }
+        }
+
+        &--col-half {
+            @include make-sm-column(6);
+
+            @media #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} {
+                @include padding(0px);
+            }
+        }
+        &--col-1 {
+            @include make-sm-column(12);
+            @include make-md-column(6);
+
+            list-style: none;
+            margin: 0px;
+            padding: 0px 30px;
+
+            @include phone-to-tablet {
+                padding: 0px;
+            }
+        }
+        &--col-2 {
+            @include make-sm-column(12);
+            @include make-md-column(6);
+
+            list-style: none;
+            padding: 0px 30px;
+
+            @include phone-to-tablet {
+                border: none;
+                clear: both;
+                padding: 0px;
+            }
+        }
+        &--col-3 {
+            @include make-sm-column(12);
+            @include make-md-column(12);
+
+            border-left: 2px #fff solid;
+            list-style: none;
+            padding: 0px 30px 0px 60px;
+
+            @include phone-to-tablet {
+                border: none;
+                padding: 0px;
+            }
+        }
+        &--col-4 {
+            @include make-sm-column(12);
+            @include make-md-column(6);
+
+            list-style: none;
+            padding: 0px 30px;
+
+            @include phone-to-tablet {
+                border: none;
+                border-top: 1px #fff solid;
+                clear: both;
+                padding: 30px 0px 0px;
+            }
+        }
+
+        @media #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} {
+            @include padding(0 0 20px 0);
+        }
+    }
+    &__heading {
+        text-align: center;
+        color: $white;
+        margin-bottom: 15px;
+    }
+}

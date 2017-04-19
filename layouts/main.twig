@@ -53,12 +53,12 @@
         {% set bodyClass = _Page.getBodyClass() | replace({('article') : 'article__page'}) %}
 
     {% if _AppHelper.getApplicationEnv() == 'PROD'%}
-        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1492434416005" type="text/css" media="all">
+        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1492608362211" type="text/css" media="all">
     {% else %}
         <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/static/plugins/jquery.fancybox/source/jquery.fancybox.css" />
         <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/static/plugins/jquery.noty-2.3.8/demo/animate.css" />
         <link type="text/css" rel="stylesheet" href="{{_AppHelper.getAssetsSDKPath()}}/js/media-player/mediaelementplayer.css" />
-        <link rel="stylesheet" href="{{networkData.templatePath}}/static/css/index.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{networkData.templatePath}}/static/css/index.min.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="{{networkData.templatePath}}/static/css/contentbox-breakup.css" type="text/css" media="all" />
     {% endif %}
     
