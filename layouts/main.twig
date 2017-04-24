@@ -53,7 +53,7 @@
         {% set bodyClass = _Page.getBodyClass() | replace({('article') : 'article__page'}) %}
 
     {% if _AppHelper.getApplicationEnv() == 'PROD'%}
-        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1492608362211" type="text/css" media="all">
+        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1493038220961" type="text/css" media="all">
     {% else %}
         <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/static/plugins/jquery.fancybox/source/jquery.fancybox.css" />
         <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/static/plugins/jquery.noty-2.3.8/demo/animate.css" />
@@ -74,7 +74,7 @@
     {% set themeColors = networkData['styling']['colours'] %}
     <style type='text/css'>
         {% if primaryFont != "" %}
-            body, .body, p {
+            body, .body, p, .article-content-section .content-area [class*="medium-insert-"], .article-content-section .content-area article, .article-content-section .content-area aside, .article-content-section .content-area blockquote, .article-content-section .content-area div, .article-content-section .content-area figure, .article-content-section .content-area h1, .article-content-section .content-area h2, .article-content-section .content-area h3, .article-content-section .content-area h4, .article-content-section .content-area h5, .article-content-section .content-area h6, .article-content-section .content-area ol, .article-content-section .content-area p, .article-content-section .content-area section, .article-content-section .content-area span, .article-content-section .content-area ul {
                 font-family: "{{primaryFont | replace({'+': ' '})}}" !important;
             }
         {% endif %}
