@@ -1,17 +1,6 @@
 {{ set(this, 'title', article.title) }}
 {% set network = _Network.getNetworkData() %} 
 
-{% set status = 'follow' %}
-{% set text = 'Follow +' %}
-{% if not _User.isGuset() and _User.isUserFollowing('blog', article.blog['id'])%}
-    {% set status = 'unfollow' %}
-    {% set text = 'Following -' %}
-{% endif %}
-
-{% set userFollowClass = 'card__avatar-follow'%}
-{% if not _User.isGuset() and _User.isUserFollowing('user', article.createdBy['id'])%}
-    {% set userFollowClass = 'card__avatar-unfollow' %}
-{% endif %}
 {% set placeholder = network.templatePath~'/static/images/placeholder/placeholder.svg' %}
 
 {% set publisher = {height: 60, width: 600, name: network.title, logo: network.templatePath~'/static/images/themeLogo.svg'} %}
@@ -62,8 +51,14 @@
 
     <div class="article__header">
         <div class="article__category"><a href="{{article.blog['url']}}">{{article.label}}</a></div>
-        {% if not _Network.isNetworkClosed(network)%}
-            {% if _User.isGuest() %}
+            {% if not _Network.isNetworkClosed(network)%}
+                {% set status = 'follow' %}
+                {% set text = 'Follow +' %}
+                {% if not _User.isGuset() and _User.isUserFollowing('blog', article.blog['id'])%}
+                    {% set status = 'unfollow' %}
+                    {% set text = 'Following -' %}
+                {% endif %}
+                {% if _User.isGuest() %}
                 <a href="javascript:void(0)" class="article__follow forceLoginModal">Follow +</a>
             {% else %}
                 <a href="javascript:void(0)" class="article__follow followArticleBtn" data-guid="{{article.blog['guid']}}" data-status="{{status}}">{{text}}</a>
@@ -78,7 +73,14 @@
                 <div class="card__caption">
                     <a href="{{_AppHelper.getUserProfileUrl(article.createdBy['username'])}}">
                         <div class="card__avatar"{% if creatorImage is not empty %} style="background-image:url('{{creatorImage}}');"{% endif %}>
-                            <div class="{{userFollowClass}}"></div>
+                            
+                            {% if not _Network.isNetworkClosed(network)%}
+                                {% set userFollowClass = 'card__avatar-follow'%}
+                                {% if not _User.isGuset() and _User.isUserFollowing('user', article.createdBy['id'])%}
+                                    {% set userFollowClass = 'card__avatar-unfollow' %}
+                                {% endif %}
+                                <div class="{{userFollowClass}}"></div>
+                            {%endif%}
                         </div>
                         <div class="card__author" itemprop="author">By <span itemprop="name">{{article.createdBy['displayName']}}</span></div>
                     </a>
