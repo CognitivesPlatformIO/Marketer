@@ -1,0 +1,622 @@
+.card {
+    .card__content {
+        .content-section {
+            .card__text, .card__heading {
+                overflow:hidden;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:480px) {
+
+    [calss*="card-"] {
+        height:auto!important;
+
+        &.withImage_content {
+            height:auto!important;
+
+            .card__content {
+                height:auto!important;
+                padding-bottom:0px!important;
+            }
+            .content-section {
+                height:auto!important;
+                position:relative;
+                padding-bottom:70px!important;
+
+                .card__heading, .card__text {
+                    overflow:hidden;
+                }
+
+                .card__caption {
+                    bottom:20px!important;
+                }
+            }
+        }
+
+        &.card__withoutImage.card__facebook {
+            height:auto!important;
+
+            .card__content {
+                height:auto!important;
+                padding-bottom:0px!important;
+            }
+
+            .content-section {
+                height:auto!important;
+                position:relative;
+                padding-bottom:70px!important;
+
+                .card__heading, .card__text {
+                    overflow:hidden;
+                }
+
+                .card__caption {
+                    bottom:20px!important;
+                }
+            }
+        }
+    }
+
+    .col-third .card .card__content, .col-two-thirds .card .card__content, .col-quarter .card .card__content {
+        height:auto!important;
+    }
+    .content-section {
+        position:relative;
+        height:auto!important;
+        padding-bottom:70px!important;
+
+        .card__heading, .card__text {
+            overflow:hidden;
+        }
+    }
+
+    .card__content {
+        height:auto!important;
+        padding-bottom:0px!important;
+    }
+
+    .col-half .card.withImage_content, .col-half .card {
+        height:auto!important;
+    }
+    .card__image,
+    .col-half .card.withImage_content .card__image,
+    .col-two-thirds .card.withImage_content .card__image {
+        width:100%!important;
+    }
+
+    .card__text, .card__tag, .card__heading, .col-quarter .card__heading {
+        margin-bottom:20px!important;
+    }
+
+    .card__heading {
+        font-weight:bold;
+        height:auto!important;
+    }
+
+    .col-third-short {
+        .card.card--light .card__content {
+            height:auto!important;
+        }
+        .card.without__image .card__content {
+            height:auto!important;
+        }
+    }
+    .card__caption {
+        bottom:20px!important;
+    }
+    .col-third-short .card.card--light .card__content .content-section .card__caption,
+    .col-third-short .card.withImage__content .card__content .content-section .card__caption,
+    .col-third .card.without__image .card__content .content-section .card__caption,
+    .col-third .card.withImage__content .card__content .content-section .card__caption {
+        bottom:20px!important;
+    }
+
+    .full_screen.card .card__content .content-section .card__caption {
+        bottom:auto!important;
+        margin-top:30px!important;
+    }
+
+    .col-two-thirds, .col-third {
+        .card__content {
+            .content-section {
+                .card__heading {
+                    height:26px!important;
+                    overflow:hidden;
+                }
+                .card__text {
+                    height:46px!important;
+                    overflow:hidden;
+                }
+            }
+        }
+    }
+
+    .col-third .card.withImage__content.card--technology .card__content .content-section .card__heading, .col-third .card.withImage__content.card--technology .card__content .content-section .card__text {
+        height:inherit!important;
+    }
+
+    .col-third .card.withImage__content.card--technology .card__content .content-section .card__heading {
+        height:40px!important;
+        overflow:hidden;
+    }
+
+    .col-third .card.withImage__content.card--technology .card__content .content-section .card__text {
+        height:46px!important;
+        overflow:hidden;
+    }
+
+    .card {
+        &.full_screen.without__image, &.full_screen {
+            .card__content {
+                .content-section {
+                    .card__text {
+                        height:108px;
+                        overflow:hidden;
+                        font-size:16px;
+                        line-height:1.3;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    .card .card__heading {
+        width:100%;
+    }
+    .card__banner .card__heading {
+        font-size:28px;
+        line-height:1.2;
+    }
+
+    .card {
+        &.full_screen {
+            .card__content {
+                .content-section {
+                    .card__text {
+                        height:168px;
+                        font-size:16px;
+                        line-height:1.3;
+                    }
+                }
+            }
+        }
+    }
+    .col-two-thirds {
+        .card {
+            .card__content {
+                .content-section {
+                    .card__text {
+                        height:110px;
+                    }
+                    .card__heading {
+                        height:80px;
+                        font-size:32px;
+                        line-height:1.2;
+                    }
+                }
+            }
+        }
+    }
+
+    /* 3rd */
+    .col-third {
+        .card.withImage__content {
+            .card__content {
+                .content-section {
+                    .card__heading, .card__text {
+                        height:26px!important;
+                    }
+                }
+            }
+        }
+        .card.card_social.card--light, .card.card--technology.without__image {
+            .card__content {
+                .content-section {
+                    .card__heading {
+                        font-weight:600;
+                        margin-bottom:20px;
+                    }
+                }
+            }
+        }
+        .card.card--light {
+            .card__text {
+                max-height: auto !important;
+                height: 200px !important;
+            }
+        }
+    }
+
+    /* 3rd Short */
+    .col-third-short {
+        .card.withImage__content {
+            .card__content {
+                .content-section {
+                    .card__heading {
+                        height:42px;
+                        line-height:20px;
+                        font-weight:600;
+                    }
+                }
+            }
+        }
+    }
+    .col-third-short .card.card--light .card__content .content-section .card__text {
+        height:48px;
+    }
+
+
+    /* Half */
+    .col-half {
+        .card {
+            height:400px;
+        }
+        .card.withImage__content {
+            .card__content {
+                .content-section {
+                    .card__heading {
+                        height:70px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Quarter */
+    .col-quarter {
+        .card.card--light, .card.without__image {
+            .card__content {
+                .content-section {
+                    .card__heading {
+                        height:65px;
+                    }
+                }
+            }
+        }
+        .card.withImage__content {
+            .card__content {
+                .content-section {
+                    .card__heading {
+                        height:50px;
+                        margin-bottom:15px;
+                    }
+                }
+            }
+        }
+    }
+
+    .card--light .card__category {
+        margin-bottom:18px;
+    }
+}
+
+
+@media screen and (min-width:768px) {
+    .card {
+        &.full_screen.without__image {
+            .card__content {
+                .content-section {
+                    .card__text {
+                        height:167px;
+                    }
+                }
+            }
+        }
+    }
+    .col-two-thirds {
+        .card {
+            .card__content {
+                .content-section {
+                    .card__text {
+                        height:110px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* 3rd */
+    .col-third {
+        .card.withImage__content {
+            .card__content {
+                .content-section {
+                    .card__heading, .card__text {
+                        height:26px!important;
+                    }
+                }
+            }
+        }
+        .card.card_social.card--light, .card.card--technology.without__image {
+            .card__content {
+                .content-section {
+                    .card__heading {
+                        font-weight:600;
+                        margin-bottom:20px;
+                    }
+                }
+            }
+        }
+    }
+    
+    .col-third > .card.card--light > .card__content > .content-section > .card__text,
+    .col-third > .card.without__image > .card__content > .content-section > .card__text {
+        margin-top:20px;
+        height:156px!important;
+        min-height:156px!important;
+        max-height:156px!important;
+    }
+
+    /* 3rd Short */
+    .col-third-short {
+        .card.withImage__content {
+            .card__content {
+                .content-section {
+                    .card__heading {
+                        height:42px;
+                        line-height:20px;
+                        font-weight:600;
+                    }
+                }
+            }
+        }
+    }
+    .col-third-short .card.card--light .card__content .content-section .card__text {
+        height:48px;
+    }
+
+
+    /* Half */
+    .col-half {
+        .card {
+            height:400px;
+        }
+        .card.withImage__content {
+            .card__content {
+                .content-section {
+                    .card__heading {
+                        height:76px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Quarter */
+    .col-quarter {
+        .card.card--light, .card.without__image {
+            .card__content {
+                .content-section {
+                    .card__heading {
+                        height:65px;
+                    }
+                }
+            }
+        }
+        .card.withImage__content {
+            .card__content {
+                .content-section {
+                    .card__heading {
+                        height:50px;
+                        margin-bottom:15px;
+                    }
+                }
+            }
+        }
+    }
+
+    .card--light .card__category {
+        margin-bottom:18px;
+    }
+    
+    .col-quarter .card__text {
+        margin-top:10px;
+        height:155px!important;
+        min-height:155px!important;
+        max-height:155px!important;
+    }
+    
+    .col-quarter > .card.card_social.withImage_content.caption_bottom .card__content > .content-section .card__text {
+        height:90px!important;
+        min-height:90px!important;
+        max-height:90px!important;
+    }
+    
+    .col-quarter > .card.withImage__content .card__text {
+        margin-top:10px;
+        height:46px!important;
+        min-height:46px!important;
+        max-height:46px!important;
+    }
+    
+    
+    .col-two-thirds > .card.withImage__content .card__content .content-section .card__heading,
+    .col-two-thirds > .card.without__image .card__content .content-section .card__heading {
+        height:76px!important;
+        min-height:76px!important;
+        max-height:76px!important;
+    }
+    
+    .col-third > .card .card__content .content-section .card__heading {
+        height:50px!important;
+        min-height:50px!important;
+        max-height:50px!important;
+    }
+    
+    
+}
+
+/* Drag and drop issue resolved here */
+.col-third {
+	.card {
+		&.withImage__content {
+			.card__image {
+				display:block!important;
+			}
+		}
+	}
+}
+.col-two-thirds {
+	.card {
+		&.withImage__content {
+			.card__image {
+				display:table-cell!important;
+			}
+		}
+	}
+}
+
+@media screen and (max-width:767px) {
+    .col-two-thirds {
+        .card {
+            &.withImage__content {
+                .card__image {
+                    display:block!important;
+                }
+            }
+        }
+    }
+}
+
+
+.card.full_screen .card__content > .content-section .card__heading {
+    height:130px!important;
+    min-height:130px!important;
+    max-height:130px!important;
+}
+.card.full_screen .card__content > .content-section .card__text {
+    margin-bottom:40px!important;
+    height:140px!important;
+    min-height:140px!important;
+    max-height:140px!important;
+}
+@media screen and (min-width:992px) {
+    .full_screen .content-section {
+        width:100%;
+        max-width:100%;
+    }
+}
+
+/* Table removed from cards */
+.col-third, .col-two-thirds, .col-third-short, .col-half, .col-quarter {
+	.card {
+		&.blocked_element {
+			display: block !important;
+			width: 100% !important;
+			position: relative !important;
+			overflow: hidden;
+			@media #{$media-iPad}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} { 
+				height: 100% !important; 
+			}
+			&.without__image, &.card--light {
+				.card__content {
+					display: block !important;
+					height: 100% !important;
+				}
+			}
+		}
+		&.author_without_date {
+			.card__caption .card__author {
+				float: left;
+				line-height: 40px;
+			}
+		
+		}
+	}
+}
+.col-two-thirds, .col-half, .col-third-short {
+	.card {
+		&.withImage__content {
+			.card__image {
+				height: 395px !important;
+				width: 50%;
+				display:inline-block!important;
+				float: left;
+				@media #{$media-iPad}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} {
+					height: 200px !important;
+					width: 100%;
+					display: block!important;
+					float: left;
+				}
+			}
+			.card__content {
+				display: block !important;
+				height: 395px !important;
+				width: 50% !important;
+				@include padding(2%);
+				float: left;
+				@media #{$media-iPad}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} {
+					display: block !important;
+					height: auto !important;
+					width: 100% !important;
+					@include padding(20px);
+				}
+			}
+		}
+	}
+}
+.col-third, .col-two-thirds, .col-half, .col-quarter, .col-third-short {	
+	@media #{$media-iPad}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} { 
+		height: auto !important; 
+	} 
+	.card {
+		@media #{$media-iPad}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} { 
+			height: auto !important; 
+		} 
+		.card__content {
+			@media #{$media-iPad}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} { 
+				height: auto !important; 
+			}
+			.content-section {
+				@media #{$media-iPad}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} { 
+					height: auto !important; 
+				}
+				.card__caption {
+					@media #{$media-iPad}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} {
+						position: relative !important;
+						bottom: 0 !important;
+						margin-top: 30px;
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+}
+.col-third-short {
+	.card {
+		&.withImage__content { 
+			.card__image {
+				height: 194px !important;
+				@media #{$media-iPad}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} {
+					height: 200px !important;
+					width: 100%;
+					display: block!important;
+					float: left;
+				}
+			}
+			.card__content {
+				height: 194px !important;
+				@media #{$media-iPad}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium}, #{$media-phone} {
+					display: block !important;
+					height: auto !important;
+					width: 100% !important;
+					@include padding(20px);
+				}
+			}
+		}
+		&.card_social {
+			.card__content {
+				.card__text {
+					display: block !important;
+				}
+				.card__heading {
+					display: none !important;
+				}
+			}
+		}
+	}
+}

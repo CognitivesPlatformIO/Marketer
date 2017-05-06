@@ -1,0 +1,158 @@
+.col-half {
+    .card {
+        height:400px;
+
+        &__no-image {
+            border-width:0px;
+        }
+
+        &__heading {
+            height:90px;
+            overflow:hidden;
+            @include card_heading3;
+
+            @include phone {
+                @include card_heading4;
+                width:100%;
+            }
+        }
+
+        &__text {
+            height:90px;
+            overflow:hidden;
+        }
+
+        &__caption {
+
+        }
+        &__icon {
+            &-youtube {
+                display:none;
+            }
+        }
+
+        @include phone {
+            height:auto;
+        }
+        @include tablet {
+            height:auto;
+        }
+
+        &--light {
+            .card {
+                &__heading {
+                    @include card_heading4;
+                }
+                &__image {
+
+                }
+            }
+        }
+    }
+
+
+    .card {
+        .content-section {
+
+        }
+        &.card--technology {
+            .card__tag {
+                display:none;
+            }
+        }
+
+        &.card--category /*, &.card__instagram, &.card__youtube, &.card__vimeo */{
+            .card__text, .card__tag {
+                display:none;
+            }
+        }
+
+        &.card_social {
+            .card__heading, .card__tag, .card__icon-social {
+                display:none;
+            }
+        }
+
+        &.card__youtube, &.card__vimeo {
+            .card__heading {
+                display:block;
+            }
+        }
+		
+		&.card__youtube, &.card__vimeo, &.video_card {
+            .card-icon {
+                @include youtube_play;
+            }
+        }
+
+        &.card__instagram {
+            .card__tag {
+                display:block;
+            }
+        }
+
+
+        &.withImage_content {
+            .card__image {
+                width:50%;
+            }
+        }
+
+        &.without__image {
+            .card__image {
+                display:none;
+            }
+
+            .content-section {
+                .card__heading, .card__text, .card__date, .card__read-time {
+                    color:$dark-color;
+                    text-shadow:none;
+                }
+                .card__heading {
+                    line-height:32px;
+                    margin-bottom:22px;
+                    font-size:($baseFontSize * 2) + 4;
+                }
+                .card__text {
+                    line-height:22px;
+                    margin-bottom:22px;
+
+                }
+            }
+
+            &.card--category /*, &.card__instagram, &.card__youtube, &.card__vimeo */{
+                .card__text {
+                    display:none;
+                }
+            }
+
+            &.card_social {
+                .card__heading, .card__tag, .card__icon-social {
+                    display:none;
+                }
+            }
+
+            &.card__youtube, &.card__vimeo {
+                .card__heading {
+                    display:block;
+                }
+
+                .card-icon {
+                    @include youtube_play;
+                }
+            }
+
+            &.card__instagram {
+                .card__tag {
+                    display:block;
+                }
+            }
+        }
+    }
+
+    .card--light .card__heading {
+        line-height:32px;
+        margin-bottom:22px;
+        font-size:($baseFontSize * 2) + 4;
+    }
+}

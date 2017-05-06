@@ -1,0 +1,85 @@
+// Global variables
+@import "variables";
+@import "fonts";
+@import "mixins";
+
+
+// Libraries
+@import "lib/bootstrap/stylesheets/bootstrap";
+@import "lib/font-awesome-4.6.3/stylesheets/font-awesome";
+@import "lib/dropzone/stylesheets/dropzone";
+@import "lib/slick";
+
+
+// Bootstrap
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+//@import "bootstrap/forms";
+/*@import "bootstrap/navs";
+@import "bootstrap/navbar";*/ 
+
+
+// Resets
+@import "variables";
+@import "layout";
+@import "reset";
+@import "blocks/lists";
+@import "application";
+@import "hasmargins";
+
+
+// Blocks
+@import "blocks/header";
+@import "blocks/responsive-navigation";
+@import "blocks/profile";
+@import "blocks/footer";
+@import "blocks/modal";
+@import "blocks/tabs";
+
+@import "blocks/card-mixins";
+@import "blocks/card";
+@import "blocks/card-light";
+@import "blocks/card-light2";
+@import "blocks/card-banner";
+@import "blocks/card-featured";
+@import "blocks/card-follow";
+
+@import "blocks/col-quarter";
+@import "blocks/col-third";
+@import "blocks/col-third-short";
+@import "blocks/col-two-thirds";
+@import "blocks/col-full";
+@import "blocks/col-half";
+
+@import "blocks/button";
+@import "blocks/form";
+@import "blocks/login";
+@import "blocks/login_form";
+@import "blocks/slides";
+@import "blocks/article";
+@import "blocks/blog";
+@import "blocks/author";
+@import "blocks/tooltip";
+@import "blocks/profile-admin";
+@import "blocks/user_posts";
+@import "blocks/user_profile";
+@import "blocks/articles2";
+@import "blocks/card_480";
+@import "blocks/error";
+@import "blocks/call-to-action";
+
+// Library
+@import "lib/owl.carousel";
+
+
+// Internet explorer
+@import "ie/ie8";
+@import "ie/ie";
+
+/* Begin Developement changes */
+
+.articleMenu, .socialMenu {
+	display:none;
+}
+
+/* End Developement changes */ 

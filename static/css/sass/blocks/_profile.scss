@@ -1,0 +1,95 @@
+#header__menu {
+    display:none;
+    width:100%;
+}
+.profile {
+    &__container {
+        @extend .container;
+    }
+    &__menu {
+        right:20px;
+        background-color:#fff;
+        box-shadow:0px 0px 25px 0px rgba(0, 0, 0, 0.2);
+        float:right;
+        padding:30px;
+        width:300px;
+        position:fixed;
+
+        @media #{$media-phone}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium} {
+            right:20px;
+            width:250px;
+        }
+
+        @include phone {
+            right:10px;
+        }
+
+        @include phone-to-tablet {
+            right:15px;
+        }
+
+        &-image {
+            background-repeat:no-repeat;
+            background-size:100%;
+            @include border-radius(45px);
+            float:left;
+            margin:0px 20px 20px 0px;
+            height:80px;
+            width:80px;
+            @media #{$media-phone}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium} {
+                height:50px;
+                width:50px;
+            }
+        }
+        &-content {
+            float:left;
+            margin-bottom:30px;
+            width: calc(100% - 115px);
+            @media #{$media-phone}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium} {
+                width: calc(100% - 70px);
+            }
+        }
+        &-name {
+            font-style:15px;
+            font-weight:bold;
+            line-height:25px;
+            width: 85%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        &-email {
+            font-style:11px;
+            line-height:20px;
+            margin-bottom:20px;
+            width: 85%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        &-button {
+            background-color:$highlight-color;
+            color:#fff;
+            text-align:center;
+            display:block;
+            padding:10px;
+        }
+        &-navigation {
+            clear:both;
+            list-style:none;
+            margin-bottom:0px;
+            padding:0px;
+            &-link {
+                &,
+                &:link,
+                &:visited,
+                &:active {
+                    display:block;
+                    line-height:32px;
+                    text-transform:uppercase;
+                }
+                &:hover {}
+            }
+        }
+    }
+}

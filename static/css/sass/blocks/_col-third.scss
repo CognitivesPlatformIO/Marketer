@@ -1,0 +1,250 @@
+.col-third {
+    .card {
+        height:400px;
+        &__category {
+            &:after {
+                margin-bottom:18px;
+            }
+        }
+        &__heading {
+            @include card_heading4;
+            max-height:72px;
+            margin-bottom:0px;
+            overflow-y:hidden;
+            width:100%;
+        }
+        &__no-image {
+            border-width:0px;
+            display:block;
+        }
+        &__image {
+            display:block;
+            height:180px;
+            width:100%;
+            border-right:none;
+        }
+        &__content {
+            display:block;
+        }
+        &__text {
+            max-height:42px;
+            overflow-y:hidden;
+            margin-bottom:0px;
+        }
+        &__featured {
+            &-left {
+                border-bottom-style:solid;
+                border-bottom-width:6px;
+                border-right:none;
+                display:block;
+                height:120px;
+                padding:16px;
+                width:100%;
+            }
+            &-right {
+                display:block;
+                width:100%;
+            }
+            &-heading {
+                @include card_heading3;
+                margin-bottom:0px;
+            }
+            &-title {
+                margin-bottom:0px;
+            }
+            &-text {
+                @include card_text_small;
+                display:block;
+                margin-bottom:0px;
+            }
+            &-sub-heading {
+                margin-bottom:4px;
+            }
+            &-link {
+                padding:10px 0px;
+            }
+            .button {
+                line-height:30px;
+            }
+        }
+        &:last-child {
+            margin-bottom:20px;
+        }
+        @include phone {
+            height:auto;
+        }
+    }
+    .card--light {
+        .card {
+            &__image {
+                height:100%;
+            }
+        }
+    }
+
+
+    .card {
+
+        &.card--light {
+            .card__image {
+                width:100%;
+            }
+        }
+
+        .card__icon-social {
+            top:5px;
+        }
+
+        &.card--technology {
+            .card__tag, .card__read-time {
+                display:none;
+            }
+        }
+
+        &.card--category /*, &.card__instagram, &.card__youtube, &.card__vimeo */ {
+            .card__text, .card__tag {
+                display:none;
+            }
+        }
+
+        &.card_social {
+            .card__heading, .card__tag, .card__icon-social {
+                display:none;
+            }
+        }
+
+        &.card__youtube, &.card__vimeo {
+            .card__heading {
+                display:block;
+            }
+        }
+		
+		&.card__youtube, &.card__vimeo, &.video_card {
+            .card-icon {
+                @include youtube_play;
+            }
+        }
+
+        &.card__instagram {
+            .card__tag {
+                display:block;
+            }
+        }
+
+
+        &.withImage__content {
+
+            .card__content {
+                height:214px;
+                overflow:hidden;
+
+                .content-section {
+                    height:174px;
+                    position:relative;
+
+                    .card__text {
+                        height:50px;
+                        overflow:hidden;
+                    }
+
+                    .card__caption {
+                        width:100%;
+                        bottom:0px!important;
+                        margin-bottom:0px;
+                        position:absolute;
+
+                        .card__read-time {
+                            display:none;
+                        }
+                    }
+                }
+            }
+
+            &.card--technology {
+                .card__content {
+
+                    .content-section {
+
+                        .card__heading, .card__text {
+                            height:30px;
+                            overflow:hidden;
+                            @media #{$media-phone} {
+                                height:auto !important;
+                            }
+                        }
+                        .card__heading {
+                            font-weight:bold;
+                            margin-bottom:10px;
+                            font-size:($baseFontSize * 1) + 6;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        &.without__image {
+            .card__image {
+                display:none;
+            }
+
+            .card__content {
+                height:394px;
+                overflow:hidden;
+
+                .content-section {
+                    height:354px;
+                    position:relative;
+
+                    .card__caption {
+                        width:100%;
+                        bottom:0px!important;
+                        margin-bottom:0px;
+                        position:absolute;
+                    }
+                }
+            }
+
+            .content-section {
+                .card__heading, .card__text, .card__date, .card__read-time {
+                    color:$dark-color;
+                    text-shadow:none;
+                }
+
+                .card__text {
+                    height:50px;
+                    overflow:hidden;
+                }
+            }
+
+            &.card--category /*, &.card__instagram, &.card__youtube, &.card__vimeo*/ {
+                .card__text {
+                    display:none;
+                }
+            }
+
+            &.card_social {
+                .card__heading, .card__tag, .card__icon-social {
+                    display:none;
+                }
+            }
+
+            &.card__youtube, &.card__vimeo {
+                .card__heading {
+                    display:block;
+                }
+
+                .card-icon {
+                    @include youtube_play;
+                }
+            }
+
+            &.card__instagram {
+                .card__tag {
+                    display:block;
+                }
+            }
+        }
+    }
+
+}

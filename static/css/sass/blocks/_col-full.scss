@@ -1,0 +1,103 @@
+.col-full {
+    .card {
+        &__banner{
+            height:400px;
+            margin-bottom:20px;
+        }
+
+        &.card__ads {
+
+            .card__category, .card__author {
+                color:$warning;
+
+                &:after {
+                    background-color:$warning;
+                }
+            }
+        }
+    }
+}
+
+.full_screen {
+
+    .content-section {
+        max-width:700px;
+        margin:0px auto;
+
+        @media #{$media-phone}, #{$media-iPhoneMedium} {
+            max-width:94%;
+        }
+    }
+
+    &.card--category {
+        .card__text {
+            display:none;
+        }
+    }
+
+    &.card_social {
+        .card__heading, .card__tag {
+            display:none;
+        }
+    }
+
+    &.card__youtube, &.card__vimeo {
+        .card__heading {
+            display:block;
+        }
+    }
+	
+	&.card__youtube, &.card__vimeo, &.video_card {
+        .card-icon {
+            @include youtube_play;
+        }
+    }
+	
+    &.card__instagram {
+        .card__tag {
+            display:block;
+        }
+    }
+
+
+    &.without__image {
+        .card__image {
+            display:none;
+        }
+
+        .content-section {
+            .card__heading, .card__text, .card__date, .card__read-time {
+                color:$light-color;
+                text-shadow:none;
+            }
+        }
+
+        &.card--category {
+            .card__text {
+                display:none;
+            }
+        }
+
+        &.card_social {
+            .card__heading, .card__tag, .card__icon-social {
+                display:none;
+            }
+        }
+
+        &.card__youtube, &.card__vimeo {
+            .card__heading {
+                display:block;
+            }
+            
+            .card-icon {
+                @include youtube_play;
+            }
+        }
+
+        &.card__instagram {
+            .card__tag {
+                display:block;
+            }
+        }
+    }
+}
