@@ -24,17 +24,19 @@
                                             <span class="fs16">{{following.blog['title'] | raw}}</span>
                                             <span class="email-spacer">{{following.blog['url']}}</span>
                                         </span>
-                                        <span>
-                                            {% if not _User.isGuest() %}
-                                                <button type="button" class="like FollowUnfollowBlog {{btnClass}} hasStar" data-guid="{{following.blog['guid']}}" data-status="{{btnStatus}}">
-                                                    <span aria-hidden="true"><i class="fa fa-star"></i></span>
-                                                </button>
-                                            {% else %}
-                                                <button type="button" class="like forceLoginModal" aria-label="Like">
-                                                    <span aria-hidden="true"><i class="fa fa-star"></i></span>
-                                                </button>
-                                            {% endif %}
-                                        </span>
+                                        {% if not _Network.isNetworkClosed(networkData)%}
+                                            <span>
+                                                {% if not _User.isGuest() %}
+                                                    <button type="button" class="like FollowUnfollowBlog {{btnClass}} hasStar" data-guid="{{following.blog['guid']}}" data-status="{{btnStatus}}">
+                                                        <span aria-hidden="true"><i class="fa fa-star"></i></span>
+                                                    </button>
+                                                {% else %}
+                                                    <button type="button" class="like forceLoginModal" aria-label="Like">
+                                                        <span aria-hidden="true"><i class="fa fa-star"></i></span>
+                                                    </button>
+                                                {% endif %}
+                                            </span>
+                                        {% endif %}
                                     </a></li>
                                 {% endfor %}
                             <li></li>

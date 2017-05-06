@@ -11,15 +11,17 @@
                    <figure class="user-profile-pic"{% if profileImage is not empty %} style="background-image:url('{{profileImage}}');"{% endif %}></figure>
                    <div class="inner-descr">
                     <h4 class="user-name text-center">{{Html.encode(user.firstname)}} {{Html.encode(user.lastname)}}</h4>
-                    {% if _User.isGuest() %}
-                        <a href="javascript:void(0)" class="button green button-block forceLoginModal"><i class="fa fa-star"></i>Follow</a>
-                    {% endif %}
-                    {% if not _User.isGuest() and _User.getId() != user.id %}
-                        {% set isUserFollowing = _User.isUserFollowing('user', user.id)  %}
-                        <div class="button-set">
-                            <a href="javascript:void(0)" class="button green FollowProfileUser" data-guid="{{user.guid}}" data-status="{% if isUserFollowing == 'TRUE' %}unfollow{% else %}follow{% endif %}"><i class="fa fa-star"></i>{% if isUserFollowing == 'TRUE' %} Unfollow {% else %} Follow {% endif %}</a>
-                            <a href="/profile/{{Html.encode(user.username)}}" class="button green" ><i class="fa fa-star"></i>View Profile</a>
-                        </div>
+                    {% if not _Network.isNetworkClosed(networkData)%}
+                        {% if _User.isGuest() %}
+                            <a href="javascript:void(0)" class="button green button-block forceLoginModal"><i class="fa fa-star"></i>Follow</a>
+                        {% endif %}
+                        {% if not _User.isGuest() and _User.getId() != user.id %}
+                            {% set isUserFollowing = _User.isUserFollowing('user', user.id)  %}
+                            <div class="button-set">
+                                <a href="javascript:void(0)" class="button green FollowProfileUser" data-guid="{{user.guid}}" data-status="{% if isUserFollowing == 'TRUE' %}unfollow{% else %}follow{% endif %}"><i class="fa fa-star"></i>{% if isUserFollowing == 'TRUE' %} Unfollow {% else %} Follow {% endif %}</a>
+                                <a href="/profile/{{Html.encode(user.username)}}" class="button green" ><i class="fa fa-star"></i>View Profile</a>
+                            </div>
+                        {% endif %}
                     {% endif %}
 
                     {% if not _User.isGuest() and _User.getId() == user.id %}
