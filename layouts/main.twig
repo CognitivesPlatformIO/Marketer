@@ -48,9 +48,9 @@
 
   <!--[if lte IE 8]><script type="text/javascript" src="{{networkData.templatePath}}/static/js/ie/ie.js"></script><![endif]-->
   
-	{% set isPage = 'content_box_page' in _Page.getBodyClass() %}
-        
-        {% set bodyClass = _Page.getBodyClass() | replace({('article') : 'article__page'}) %}
+    {% set isPage = 'content_box_page' in _Page.getBodyClass() and 'page-contact-us' not in _Page.getBodyClass() %}
+
+    {% set bodyClass = _Page.getBodyClass() | replace({('article') : 'article__page'}) %}
 
     {% if _AppHelper.getApplicationEnv() == 'PROD'%}
         <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1493038220961" type="text/css" media="all">
