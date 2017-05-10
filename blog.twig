@@ -28,15 +28,17 @@
         <div class="blog-left">
             <h1 class="blog__heading">{{blogInfo.title}}</h1>
             <p class="blog__text">{{Helper.shortStr(blogInfo.shortDescription, 80, false, true) | raw}}</p>
-            {% if not _User.isGuest %}
-                {% set isUserFollowingBlog = _User.isUserFollowing('blog', blogInfo.id) %}
-                {% if isUserFollowingBlog %}
-                    <a href="javascript:void(0)" class="button followBlog" data-status="unfollow" data-guid="{{blogInfo.guid}}">FOLLOWING -</a>
+            {% if not _Network.isNetworkClosed(networkData)%}
+                {% if not _User.isGuest %}
+                    {% set isUserFollowingBlog = _User.isUserFollowing('blog', blogInfo.id) %}
+                    {% if isUserFollowingBlog %}
+                        <a href="javascript:void(0)" class="button followBlog" data-status="unfollow" data-guid="{{blogInfo.guid}}">FOLLOWING -</a>
+                    {% else %}
+                        <a href="javascript:void(0)" class="button followBlog" data-status="follow"  data-guid="{{blogInfo.guid}}">FOLLOW +</a>
+                    {% endif %}
                 {% else %}
-                    <a href="javascript:void(0)" class="button followBlog" data-status="follow"  data-guid="{{blogInfo.guid}}">FOLLOW +</a>
+                    <a href="javascript:void(0)" class="button forceLoginModal">FOLLOW +</a>
                 {% endif %}
-            {% else %}
-                <a href="javascript:void(0)" class="button forceLoginModal">FOLLOW +</a>
             {% endif %}
             <div class="blog__social">
                 {% if blogInfo.settings['social']['facebook'] is not empty %}
@@ -63,17 +65,19 @@
                 <div class="author__avatar" {%if blogOwnerImage is not empty%}style="background-image:url('{{blogOwnerImage}}');"{%endif%}></div>
                 <h1 class="author__name">{{blogInfo.owner['display_name']}}</h1>
                 <p class="author__title">{{Helper.shortStr(blogInfo.owner['bio'], 180, false, true) | raw}}</p>
-                {% if not _User.isGuest() %}
-                    {% if _User.getId() != blogInfo.owner['id'] %}
-                        {% set isUserFollowingUser = _User.isUserFollowing('user', blogInfo.owner['id']) %}
-                        {% if isUserFollowingUser %}
-                            <div href="javascript:void(0)" class="button followUser" data-status="unfollow" data-guid="{{blogInfo.owner['guid']}}">Following -</div>
-                        {% else %}
-                            <div href="javascript:void(0)" class="button followUser" data-status="follow" data-guid="{{blogInfo.owner['guid']}}">Follow +</div>
-                        {% endif %}
-                    {% endif %} 
-                {% else %}
-                    <div class="button forceLoginModal">Follow +</div>
+                {% if not _Network.isNetworkClosed(networkData)%}
+                    {% if not _User.isGuest() %}
+                        {% if _User.getId() != blogInfo.owner['id'] %}
+                            {% set isUserFollowingUser = _User.isUserFollowing('user', blogInfo.owner['id']) %}
+                            {% if isUserFollowingUser %}
+                                <div href="javascript:void(0)" class="button followUser" data-status="unfollow" data-guid="{{blogInfo.owner['guid']}}">Following -</div>
+                            {% else %}
+                                <div href="javascript:void(0)" class="button followUser" data-status="follow" data-guid="{{blogInfo.owner['guid']}}">Follow +</div>
+                            {% endif %}
+                        {% endif %} 
+                    {% else %}
+                        <div class="button forceLoginModal">Follow +</div>
+                    {% endif %}
                 {% endif %}
                 
 
