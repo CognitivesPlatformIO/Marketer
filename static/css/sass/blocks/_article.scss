@@ -385,7 +385,14 @@
                 }
             }
         }
-        
+        a {
+            border-bottom: 1px solid $base-color !important;
+            color: $base-color;
+            &:hover, &:focus {
+                color: $hover-color;
+                border-color: $hover-color; 
+            }
+        }
         blockquote {
             @include padding-left(30px);
         }
