@@ -7,6 +7,9 @@
 {% if network.logoMedia | length > 0 %}
     {% set publisher = publisher|merge({logo:_Media.getMediaUrl(network.logoMedia, publisher.width, publisher.height, {'crop': 'lpad'} )})%}
 {% endif %}
+
+{{this.registerLinkTag({rel:'amphtml', href:_AppHelper.getServerUrl(false)~'?amp=1'})}}
+
 <div class="article article--category_{{article.blog['id']}} article--category {{ article.media|length <= 0 ? 'no_image' : '' }}" itemscope itemtype="http://schema.org/NewsArticle">
     <meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="{{article.url}}"/>
     <meta itemprop="url" content="{{article.url}}">
