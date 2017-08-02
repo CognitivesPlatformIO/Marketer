@@ -37,14 +37,18 @@
     {% set primaryFont = networkData['styling']['fonts']['primaryFont'] %}
     {% set secFont = networkData['styling']['fonts']['secondaryFont'] %}
 
-    {% if primaryFont != "" %}
+    {% if primaryFont != "" and secFont != "" and primaryFont == secFont %}
         <link href='https://fonts.googleapis.com/css?family={{primaryFont}}' rel='stylesheet' type='text/css'>
-    {% endif %}
+    {% elseif primaryFont != "" %}
+        <link href='https://fonts.googleapis.com/css?family={{primaryFont}}' rel='stylesheet' type='text/css'>
     {% if secFont != "" %}
         <link href='https://fonts.googleapis.com/css?family={{secFont}}' rel='stylesheet' type='text/css'>
     {% endif %}
+    {% elseif secFont != "" %}
+        <link href='https://fonts.googleapis.com/css?family={{secFont}}' rel='stylesheet' type='text/css'>
+    {% endif %}
     
-    <link rel="alternate" type="application/rss+xml" title="{{_Network.getNetworkTitle()}} -  RSS Feeds" href="http://{{networkData.defaultDomain['domain']}}/feed/rss"/>
+    <link rel="alternate" type="application/rss+xml" title="{{_Network.getNetworkTitle()}} -  RSS Feeds" href="{{_AppHelper.getBaseUrl()}}/feed/rss"/>
 
   <!--[if lte IE 8]><script type="text/javascript" src="{{networkData.templatePath}}/static/js/ie/ie.js"></script><![endif]-->
   
@@ -53,7 +57,8 @@
     {% set bodyClass = _Page.getBodyClass() | replace({('article') : 'article__page'}) %}
 
     {% if _AppHelper.getApplicationEnv() == 'PROD'%}
-        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1497350851109" type="text/css" media="all">
+        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/output.min.css?rel=1500121564673" type="text/css" media="all">
+        <link rel="stylesheet" href="{{networkData.templatePath}}/static/deploy/print.min.css" type="text/css" media="print">
     {% else %}
         <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/static/plugins/jquery.fancybox/source/jquery.fancybox.css" />
         <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/static/plugins/jquery.noty-2.3.8/demo/animate.css" />
@@ -70,7 +75,13 @@
         <link href="{{_AppHelper.getAssetsStaticPath()}}/dist/vendors/ContentBox/contentbuilder/contentbuilder.css" rel="stylesheet" type="text/css" />
         <link href="{{_AppHelper.getAssetsStaticPath()}}/dist/vendors/ContentBox/contentbox/contentbox.css" rel="stylesheet" type="text/css" />
     {% endif %}
-    
+    <style>
+        @media print {
+            header, footer, .header, .side-navigation, .article__image, .article__banner, .article__caption, .article__category, .article__follow, .article__social  {
+                display: none !important;
+            }
+        }
+    </style>
     {% set themeColors = networkData['styling']['colours'] %}
     <style type='text/css'>
         {% if primaryFont != "" %}
@@ -146,19 +157,28 @@
         {% endif %}
     </style>
 
-     {% if blogData.settings['GoogleAnalyticsID'] is defined and  blogData.settings['GoogleAnalyticsID'] is not empty  %}
-        <!-- Google Analytics -->
-        <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    {% set googleAnalyitcsId = ''%}
+        {% if blogData.settings['GoogleAnalyticsID'] is defined and  blogData.settings['GoogleAnalyticsID'] is not empty  %}
+            {% set googleAnalyitcsId = blogData.settings['GoogleAnalyticsID']%}
+        {% endif %}
 
-        ga('create', '{{blogData.settings['GoogleAnalyticsID']}}', 'auto');
-        ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
-    {% endif %}
+        {% if networkData.thirdPartyIntegrations['googleAnalytics']['id'] is defined and  networkData.thirdPartyIntegrations['googleAnalytics']['id'] is not empty  %}
+            {% set googleAnalyitcsId = networkData.thirdPartyIntegrations['googleAnalytics']['id'] %}
+        {% endif %}
+
+        {% if googleAnalyitcsId is defined and googleAnalyitcsId is not empty%}
+            <!-- Google Analytics -->
+            <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '{{googleAnalyitcsId}}', 'auto');
+            ga('send', 'pageview');
+            </script>
+            <!-- End Google Analytics -->
+        {% endif %}
 
     {% set blogList = _Blog.getBlogList() %}
 
@@ -229,7 +249,7 @@
     </div>
 </div>
 
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src='https://www.google.com/recaptcha/api.js' async></script>
 {{ this.endBody() }}
 </body>
 {{ this.endPage() }}
