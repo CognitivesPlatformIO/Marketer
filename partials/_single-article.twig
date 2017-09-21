@@ -31,8 +31,8 @@
     {% set blogClass = 'card--blog_'~article.blog['id'] %}
     <a itemscope itemtype="http://schema.org/NewsArticle" href="{{article.url}}" id="Article{{article.articleId}}" class="card blocked_element  swap {{cardClass}} {{blogClass | lower}} {{cardImageClass}} {{ (article.isPromoted) ? 'card_ads' : '' }}" data-id="{{article.articleId}}" data-position="{{position}}" 
        data-social="0" data-article-image="{{articleImg}}" data-article-text="{{Helper.htmlToText(article.title, 100) | raw}}">
-        <meta itemprop="url" content="{{article.url}}"/>
-        <meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="{{article.url}}"/>
+        <meta itemprop="url" content="{{article.absoluteUrl}}"/>
+        <meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="{{article.absoluteUrl}}"/>
         {% if article.featuredMedia['media'] is defined and  article.featuredMedia['media'] | length > 0%}
             <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
                 <meta itemprop="url" content="{{article.featuredMedia['media']['url']}}"/>
@@ -143,10 +143,12 @@
                     {% set pinTitle = 'Un-Pin Article' %}
                     {% set pinTxt = 'Un-Pin' %}
                     {% set pinCls = 'selected' %}
-                {% endif %}    
-                <button title="Edit" class="btnhide social-tooltip editSocialPost" type="button" data-url="/admin/social-funnel/update-social?guid={{social.blog['guid']}}&socialguid={{social.guid}}">
-                    <i class="fa fa-edit"></i><span class="hide">Edit</span>
-                </button>
+                {% endif %} 
+                {% if article.userHasEditArticleAccess == '1' %}
+                    <button title="Edit" class="btnhide social-tooltip editSocialPost" type="button" data-url="/admin/social-funnel/update-social?guid={{social.blog['guid']}}&socialguid={{social.guid}}">
+                        <i class="fa fa-edit"></i><span class="hide">Edit</span>
+                    </button>
+                {% endif %} 
                 <button data-position="{{position}}" data-social="1" data-id="{{article.socialId}}" title="{{pinTitle}}" class="btnhide social-tooltip PinArticleBtn {{pinCls}}" type="button" data-status="{{article.isPinned}}">
                     <i class="fa fa-thumb-tack"></i><span class="hide">{{pinTxt}}</span>
                 </button>
